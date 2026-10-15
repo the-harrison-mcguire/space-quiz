@@ -22,4 +22,6 @@ CSS in the document’s `<style>` block owns layout, interaction states, animati
 - Use the existing CSS custom properties for colors so light and `prefers-color-scheme: dark` themes stay aligned. Keep responsive adjustments in the existing mobile media query.
 - Preserve the native-button interaction model and visible `:focus-visible` treatment. Keep question feedback in its live region, maintain the progress bar’s ARIA value as questions advance, and move focus when the quiz changes screen or question.
 - Honor `prefers-reduced-motion` for decorative and interaction animations; keep decorative layers non-interactive and hidden from assistive technology.
-- The score threshold for the celebratory results treatment is 8 out of 10. Keep the score, result copy, reaction, and visual treatment consistent if quiz length or scoring changes.
+- Each new run uses a Fisher–Yates shuffle of the question records and avoids repeating the immediately previous order. Keep each question’s options, correct answer, and fact attached to that record; track selected options in the shuffled run order for the results review.
+- The personal-best score is stored under `orbit-space-quiz-personal-best` in local storage. Storage access may fail, so preserve quiz behavior with the in-memory fallback.
+- The celebratory results treatment starts at 8 correct answers. Keep its copy, reaction, badge, and styling consistent if quiz length or scoring changes.
